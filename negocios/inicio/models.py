@@ -23,7 +23,7 @@ class Equipo (models.Model):
     sistema_operativo = models.TextField(max_length=30, null=False)
     
 
-class OrdenServicio(models.Moodel):
+class OrdenServicio(models.Model):
     id_orden = models.IntegerField(null=False, blank=False, primary_key=True)
     fecha_orden = models.DateField(null=False)
     cotizacion = models.FloatField(max_length=5)
