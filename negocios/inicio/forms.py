@@ -7,6 +7,9 @@ class FormEquipo(forms.ModelForm):
         model = Equipo
         fields = '__all__'
         widgets = {
+            'id_equipo': forms.NumberInput(
+                attrs={'class':'form-control','placeholder':'Numero de equipo', 'required': True}
+            ),
             'cliente_equipo': forms.TextInput(
                 attrs={'class':'form-control','placeholder':'Nombre del cliente', 'required': True}
             ),
@@ -85,3 +88,34 @@ class FormServicio(forms.ModelForm):
             ),
         }
         
+class FormEditarOrden(forms.ModelForm):
+    class Meta:
+        model = OrdenServicio
+        exclude = ['id_orden']
+        widgets = {
+            'observaciones_notas': forms.TextInput(
+                attrs={'class':'form-control','placeholder':'Observaciones', 'required': False}
+            ),
+            'falla_equipo': forms.TextInput(
+                attrs={'class':'form-control','placeholder':'Falla', 'required': True}
+            ),
+            'partes': forms.TextInput(
+                attrs={'class':'form-control', 'placeholder':'Partes', 'required': False}
+            ),
+
+        }
+
+
+class FormEditarEquipo(forms.ModelForm):
+    class Meta:
+        model = Equipo
+        exclude = ['serial_number']
+        widgets = {
+            'contraseña_equipo': forms.TextInput(
+                attrs={'class':'form-control','placeholder':'Contraseña del equipo', 'required': False}
+            ),
+            'sistema_operativo': forms.TextInput(
+                attrs={'class':'form-control','placeholder':'Sistema Operativo', 'required': True}
+            ),
+
+        }

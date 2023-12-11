@@ -30,8 +30,8 @@
                     <td>{{servicio.costo_final}}</td>
                     <td>{{servicio.observaciones_notas}}</td>
                     <td>{{servicio.equipo}}</td>
-                    <td><a class="btn btn-danger" href="#">Eliminar</a></td>
-                    <td><a class="btn btn-success" href="#">Editar</a></td>
+                    <td><a class="btn btn-danger" href="eliminarOrden/{{servicio.id_orden}}">Eliminar</a></td>
+                    <td><a class="btn btn-success" href="editarOrden/{{servicio.id_orden}}">Editar</a></td>
 
                 </tr>
             {% endfor %}

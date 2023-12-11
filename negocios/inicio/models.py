@@ -27,7 +27,7 @@ class Equipo (models.Model):
     
 
 class OrdenServicio(models.Model):
-    id_orden = models.IntegerField(null=False, blank=False, primary_key=True)
+    id_orden = models.AutoField(null=False, blank=False, primary_key=True)
     fecha_orden = models.DateField(null=False)
     cotizacion = models.FloatField(max_length=5)
     tipo_servicio = models.CharField(max_length=20, null=False)
