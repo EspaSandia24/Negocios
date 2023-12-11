@@ -65,27 +65,29 @@
                     <p class="text-center small">Ingresa tus datos del usuario nuevo</p>
                   </div>
 
-                  <form class="row g-3 needs-validation" novalidate>
-                    <div class="col-12">
-                      <label for="yourName" class="form-label">Nombre</label>
-                      <input type="text" name="name" class="form-control" id="yourName" required>
-                      <div class="invalid-feedback">Por favor, ingresa tu nombre!</div>
-                    </div>
+                  <form class="row g-3 needs-validation" method="post" action="{% url 'Registrar' %}" novalidate>
+                {% csrf_token %}
 
                     <div class="col-12">
                       <label for="yourUsername" class="form-label">Username</label>
                       <div class="input-group has-validation">
                         <span class="input-group-text" id="inputGroupPrepend">@</span>
-                        <input type="text" name="username" class="form-control" id="yourUsername" required>
+                        <input type="text" name="username" class="form-control" id="Username" required>
                         <div class="invalid-feedback">Por favor escoge un nombre de usuario.</div>
                       </div>
                     </div>
 
                     <div class="col-12">
                       <label for="yourPassword" class="form-label">Password</label>
-                      <input type="password" name="password" class="form-control" id="yourPassword" required>
+                      <input type="password" name="password" class="form-control" id="Password" required>
                       <div class="invalid-feedback">Por favor ingresa tu contraseña!</div>
                     </div>
+                    <div class="col-12">
+                      <label for="yourPassword" class="form-label">Confirmar Password</label>
+                      <input type="password" name="password2" class="form-control" id="Password" required>
+                      <div class="invalid-feedback">Por favor ingresa tu contraseña!</div>
+                    </div>
+                    
                     <div class="col-12">
                       <button class="btn btn-primary w-100" type="submit">registrar</button>
                     </div>
