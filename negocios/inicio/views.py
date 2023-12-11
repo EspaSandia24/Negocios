@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required, permission_required
 from inicio.models import Equipo, OrdenServicio
-from inicio.forms import FormEquipo, FormServicio ,UserForm
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import AuthenticationForm
@@ -9,6 +8,11 @@ from django.views.generic import CreateView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.contrib import messages
+from django.shortcuts import get_object_or_404
+from django.urls import reverse
+
+
+from inicio.forms import FormEquipo, FormServicio, FormEditarOrden, FormEditarEquipo
 
 
 # Create your views here.
@@ -90,3 +94,43 @@ def agregar_servicio(request):
         'form' : form
     }     
     return render(request, 'servicios/nuevo_servicio.html', context)
+
+def eliminar_orden(request, id_orden):
+    orden = OrdenServicio.objects.get(id_orden = id_orden)
+    orden.delete()
+    return redirect('Servicios')
+
+def eliminar_equipo(request, serial_number):
+    equipo = Equipo.objects.get(serial_number = serial_number)
+    equipo.delete()
+    return redirect('Equipos')
+
+def editar_orden(request, id_orden):
+    orden = OrdenServicio.objects.get(id_orden = id_orden)
+    form = FormEditarOrden(instance=orden)
+
+    if request.method == 'POST':
+        form = FormEditarOrden(request.POST,  instance=orden)
+        if form.is_valid():
+            form.save()
+            return redirect('Servicios')
+            
+    context = {
+        'form' : form
+    }
+    return render(request, 'servicios/editar_orden.html', context)
+
+def editar_equipo(request, serial_number):
+    equipo = Equipo.objects.get(serial_number = serial_number)
+    form = FormEditarEquipo(instance=equipo)
+
+    if request.method == 'POST':
+        form = FormEditarEquipo(request.POST,  instance=equipo)
+        if form.is_valid():
+            form.save()
+            return redirect('Equipos')
+            
+    context = {
+        'form' : form
+    }
+    return render(request, 'equipos/editar_equipo.html', context)

@@ -8,7 +8,7 @@ class Equipo (models.Model):
     tipo = [
         ('E','Escritorio-CPU'),
         ('P','Portatil'),
-        ('A','Alo'),
+        ('A','AIO'),
         ('I','Impresora'),
         ('M','Multifuncional'),
         ('T','Tablet')  
@@ -17,7 +17,7 @@ class Equipo (models.Model):
     tipo_equipo = models.CharField(max_length=1, choices= tipo, default='P')
     marca_equipo = models.CharField(max_length=30, null=False)
     modelo_equipo = models.CharField(max_length=30, null=False)
-    serial_number = models.CharField(max_length=15, null=False)
+    serial_number = models.CharField(max_length=15, null=False, blank=False)
     accesorios_equipo = models.TextField(max_length=100)
     contraseña_equipo = models.CharField(max_length=30)
     sistema_operativo = models.TextField(max_length=30, null=False)
@@ -27,7 +27,7 @@ class Equipo (models.Model):
     
 
 class OrdenServicio(models.Model):
-    id_orden = models.IntegerField(null=False, blank=False, primary_key=True)
+    id_orden = models.AutoField(null=False, blank=False, primary_key=True)
     fecha_orden = models.DateField(null=False)
     cotizacion = models.FloatField(max_length=5)
     tipo_servicio = models.CharField(max_length=20, null=False)
