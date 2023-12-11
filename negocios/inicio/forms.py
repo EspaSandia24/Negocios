@@ -7,8 +7,8 @@ class FormEquipo(forms.ModelForm):
         model = Equipo
         fields = '__all__'
         widgets = {
-            'id_equipo': forms.NumberInput(
-                attrs={'class':'form-control','placeholder':'Numero de equipo', 'required': True}
+            'serial_number': forms.TextInput(
+                attrs={'class':'form-control','placeholder':'Numero de serie', 'required': False}
             ),
             'cliente_equipo': forms.TextInput(
                 attrs={'class':'form-control','placeholder':'Nombre del cliente', 'required': True}
@@ -23,9 +23,6 @@ class FormEquipo(forms.ModelForm):
             ),
             'modelo_equipo': forms.TextInput(
                 attrs={'class':'form-control','placeholder':'Modelo', 'required': True}
-            ),
-            'serial_number': forms.TextInput(
-                attrs={'class':'form-control','placeholder':'Numero de serie', 'required': False}
             ),
             'accesorios_equipo': forms.TextInput(
                 attrs={'class':'form-control','placeholder':'Accesorios', 'required': False}
