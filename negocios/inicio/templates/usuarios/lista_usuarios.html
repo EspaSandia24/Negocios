@@ -1,19 +1,19 @@
 {% extends 'base.html' %}
 
 {% block titulo %}
-Lista de usuarios
+Lista de Usuarios
 {% endblock titulo %}
     
 
 {% block contenido %}
-    <h1>Lista de usuarios</h1>
+    <h1>Lista de Usuarios</h1>
 
     <form  method="POST" id="form">
         {% csrf_token %}
         <table class="table">
             <thead>
                 <tr>
-                    <th>Nombre de usuario</th>
+                    <th>Nombre de Usuario</th>
                     <th>Permiso</th>
                     <th>Acciones</th>
                     
