@@ -14,12 +14,12 @@ class Equipo (models.Model):
         ('T','Tablet')  
     ] 
     
-    tipo_equipo = models.CharField(max_length=1, choices= tipo, default='P')
-    marca_equipo = models.CharField(max_length=30, null=False)
-    modelo_equipo = models.CharField(max_length=30, null=False)
-    serial_number = models.CharField(max_length=15, null=False, blank=False,unique=True)
-    accesorios_equipo = models.TextField(max_length=100)
-    contraseña_equipo = models.CharField(max_length=30)
+    tipo_equipo = models.TextField(max_length=1, choices= tipo, default='P')
+    marca_equipo = models.TextField(max_length=30, null=False)
+    modelo_equipo = models.TextField(max_length=30, null=False)
+    serial_number = models.TextField(max_length=15, null=False, blank=False,unique=True)
+    accesorios_equipo = models.TextField(max_length=100,null=True)
+    contraseña_equipo = models.TextField(max_length=30,null=True)
     sistema_operativo = models.TextField(max_length=30, null=False)
     
     def __str__(self):
@@ -33,13 +33,13 @@ class OrdenServicio(models.Model):
     tipo_servicio = models.CharField(max_length=20, null=False)
     falla_equipo = models.CharField(max_length=200, null=False)
     indicaciones_adicionales = models.CharField(max_length=70, null= False)
-    servicio_realizado = models.CharField(max_length=150)
-    notas_finales = models.CharField(max_length=150)
-    encargado = models.CharField(max_length=50)
-    partes = models.CharField(max_length=70)
-    fecha_entrega = models.DateField()
-    costo_final = models.FloatField(max_length=5.2)
-    observaciones_notas = models.CharField(max_length=50)
+    servicio_realizado = models.CharField(max_length=150,null=True)
+    notas_finales = models.CharField(max_length=150,null=True)
+    encargado = models.CharField(max_length=50,null=True)
+    partes = models.CharField(max_length=70,null=True)
+    fecha_entrega = models.DateField(null=True)
+    costo_final = models.FloatField(max_length=5.2,null=True)
+    observaciones_notas = models.CharField(max_length=50,null=True)
     equipo = models.ForeignKey(Equipo, null=False, blank=False, on_delete=models.CASCADE)
     
     
