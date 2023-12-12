@@ -86,16 +86,6 @@
             <li>
               <hr class="dropdown-divider">
             </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                <i class="bi bi-person"></i>
-                <span>Mi Perfil</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
             <li>
               <a class="dropdown-item d-flex align-items-center" href="{% url 'logout' %}">
                 <i class="bi bi-box-arrow-right"></i>
@@ -119,7 +109,7 @@
       <li class="nav-item">
         <a class="nav-link " href="{% url 'Principal' %}">
           <i class="bi bi-grid"></i>
-          <span>Dashboard</span>
+          <span>Inicio</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
@@ -160,14 +150,14 @@
         </ul>
       </li><!-- End Forms Nav -->
 
-
-
+      
+      <!-- {%if 'Administrador' ==  request.user.groups.all.0.name %}-->
       <li class="nav-heading">Administración</li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
+        <a class="nav-link collapsed" href="{% url 'usuarios' %}">
           <i class="bi bi-person"></i>
-          <span>Perfil</span>
+          <span>Permisos</span>
         </a>
       </li><!-- End Profile Page Nav -->
 
@@ -177,6 +167,7 @@
           <span>Registrar usuario</span>
         </a>
       </li><!-- End Register Page Nav -->
+      <!--{% endif %}-->
     </ul>
 
   </aside><!-- End Sidebar-->

@@ -17,7 +17,7 @@ class Equipo (models.Model):
     tipo_equipo = models.CharField(max_length=1, choices= tipo, default='P')
     marca_equipo = models.CharField(max_length=30, null=False)
     modelo_equipo = models.CharField(max_length=30, null=False)
-    serial_number = models.CharField(max_length=15, null=False, blank=False)
+    serial_number = models.CharField(max_length=15, null=False, blank=False,unique=True)
     accesorios_equipo = models.TextField(max_length=100)
     contraseña_equipo = models.CharField(max_length=30)
     sistema_operativo = models.TextField(max_length=30, null=False)

@@ -9,6 +9,7 @@
 <form method="post" class="form">
     {% csrf_token %}
     {{form.as_p}}
+    <a class="btn btn-secondary" href="{% url 'Servicios' %}">Cancelar</a>
     <button class="btn btn-primary" type="submit">Guardar</button>
 </form>
 {% endblock contenido %}

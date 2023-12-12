@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required, permission_required
 from inicio.models import Equipo, OrdenServicio
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User,Group
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import AuthenticationForm
 from django.views.generic import CreateView
@@ -40,11 +40,11 @@ def registrar(request):
                 return render(request, 'register.html')
             
             user = User.objects.create_user(username=usuario, email=email, password=password)
-        
+            user.groups.add(Group.objects.get(name='Empleado'))
             user.save()
-            return redirect('Inicio') 
+            return redirect('Principal') 
                 
-    return render(request, 'register.html')
+    return render(request, 'usuarios/register.html')
 
 @login_required
 def incio(request):
@@ -95,16 +95,19 @@ def agregar_servicio(request):
     }     
     return render(request, 'servicios/nuevo_servicio.html', context)
 
+@login_required
 def eliminar_orden(request, id_orden):
     orden = OrdenServicio.objects.get(id_orden = id_orden)
     orden.delete()
     return redirect('Servicios')
 
+@login_required
 def eliminar_equipo(request, serial_number):
     equipo = Equipo.objects.get(serial_number = serial_number)
     equipo.delete()
     return redirect('Equipos')
 
+@login_required
 def editar_orden(request, id_orden):
     orden = OrdenServicio.objects.get(id_orden = id_orden)
     form = FormEditarOrden(instance=orden)
@@ -120,6 +123,7 @@ def editar_orden(request, id_orden):
     }
     return render(request, 'servicios/editar_orden.html', context)
 
+@login_required
 def editar_equipo(request, serial_number):
     equipo = Equipo.objects.get(serial_number = serial_number)
     form = FormEditarEquipo(instance=equipo)
@@ -134,3 +138,40 @@ def editar_equipo(request, serial_number):
         'form' : form
     }
     return render(request, 'equipos/editar_equipo.html', context)
+
+@login_required
+def lista_usuarios(request):
+    usuarios = User.objects.all()
+    grupos = Group.objects.all()
+    
+    for usuario in usuarios:
+        grupo = usuario.groups.all()
+
+    context={
+        'usuarios' : usuarios,
+        'grupos' : grupos
+    }
+    return render(request, 'usuarios/lista_usuarios.html',context)
+
+@login_required
+def asignar_grupo(request, id):
+    usuario = User.objects.get(id=id)
+    if request.method == 'POST':
+        grupo = request.POST.get('grupo')
+        grupo_actual = usuario.groups.first()
+        usuario.groups.remove(grupo_actual)
+        usuario.groups.add(grupo)
+        usuario.save()
+        return redirect('usuarios')
+    grupos = Group.objects.all()
+    context={
+        'grupos' : grupos
+    }
+    return render(request, 'usuarios/asignar_permiso.html',context)
+
+
+@login_required
+def eliminar_usuario(request, id):
+    usuario = User.objects.get(id=id)
+    usuario.delete()
+    return redirect('usuarios')

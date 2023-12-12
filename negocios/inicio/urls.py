@@ -16,4 +16,8 @@ urlpatterns = [
     path('servicios/editarOrden/<int:id_orden>', views.editar_orden, name='editarOrden'),
     path('equipos/eliminarEquipo/<int:serial_number>', views.eliminar_equipo, name='eliminarEquipo'),
     path('equipos/editarEquipo/<int:serial_number>', views.editar_equipo, name='editarEquipo'),   
+    path('usuarios/', views.lista_usuarios, name='usuarios'),
+    path('tipo_usuario/<int:id>', views.asignar_grupo, name='asignarGrupo'),   
+    path('eliminar_usuario/<int:id>', views.eliminar_usuario, name='eliminarUsuario'),   
+       
 ]
