@@ -102,7 +102,7 @@ class FormEditarOrden(forms.ModelForm):
         exclude = ['id_orden','fecha_orden','equipo']
         widgets = {
             'fecha_entrega':forms.DateInput(
-                attrs={'class':'form-control','placeholder':'dd/mm/aaaa',"required": True}
+                attrs={'class':'form-control','placeholder':'dd/mm/aaaa',"required": False}
             ),  
             'cotizacion': forms.NumberInput(
                 attrs={'class': 'form-control', 'placeholder': 'Cotizacion', 'required': False}

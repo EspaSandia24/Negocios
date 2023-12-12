@@ -4,7 +4,7 @@ from django.db import models
 
 class Equipo (models.Model):
     cliente_equipo = models.TextField(max_length=50, null=False)
-    telefono_cliente = models.IntegerField(max_length=10, null=False)
+    telefono_cliente = models.IntegerField(null=False)
     tipo = [
         ('E','Escritorio-CPU'),
         ('P','Portatil'),
@@ -37,7 +37,7 @@ class OrdenServicio(models.Model):
     notas_finales = models.CharField(max_length=150,null=True)
     encargado = models.CharField(max_length=50,null=True)
     partes = models.CharField(max_length=70,null=True)
-    fecha_entrega = models.DateField(null=True)
+    fecha_entrega = models.DateField(null=True, blank=True)
     costo_final = models.FloatField(max_length=5.2,null=True)
     observaciones_notas = models.CharField(max_length=50,null=True)
     equipo = models.ForeignKey(Equipo, null=False, blank=False, on_delete=models.CASCADE)
